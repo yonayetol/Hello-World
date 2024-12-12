@@ -1,10 +1,13 @@
+from heapq import heapify, heappop, heappush
+from math import sqrt
+from typing import List
+
 class Solution:
     def pickGifts(self, gifts: List[int], k: int) -> int:
-        
-        for i in range(k):
-            maxiat = 0
-            for j in range(len(gifts)):
-                if gifts[j] > gifts[maxiat]:
-                    maxiat = j
-            gifts[maxiat] = int(gifts[maxiat]**0.5)
-        return sum(gifts) 
+        gifts = [-gift for gift in gifts]
+        heapify(gifts)
+
+        for _ in range(k):
+            heappush(gifts, -int(sqrt(-heappop(gifts))))
+
+        return -sum(gifts)
