@@ -3,12 +3,13 @@ class Solution:
         # first let's associate the height with names
         n = len(names)
         nam_hei = {heights[i]:names[i] for i in range(n)}
-        # using selection sort
-        for i in range(n):
-            tempo = i
-            for j in range(i,n):
-                if heights[tempo] < heights[j]:
-                    tempo = j
-            # swap
-            heights[i],heights[tempo] = heights[tempo],heights[i]
+        # using insertion sort # inserting it where it deserve
+
+        for i in range(1,n):
+            lft = i
+            while lft-1 >= 0 and heights[lft-1] < heights[i]:
+                heights[lft-1], heights[i] = heights[i],heights[lft-1]
+                lft -= 1
+                i = lft
+            
         return [nam_hei[height] for height in heights]
