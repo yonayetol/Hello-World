@@ -3,9 +3,12 @@ class Solution:
         # first let's associate the height with names
         n = len(names)
         nam_hei = {heights[i]:names[i] for i in range(n)}
-        # using bubble sort
+        # using selection sort
         for i in range(n):
-            for j in range(0,n-i-1):
-                if heights[j]<heights[j+1]:
-                    heights[j],heights[j+1] = heights[j+1],heights[j]
+            tempo = i
+            for j in range(i,n):
+                if heights[tempo] < heights[j]:
+                    tempo = j
+            # swap
+            heights[i],heights[tempo] = heights[tempo],heights[i]
         return [nam_hei[height] for height in heights]
