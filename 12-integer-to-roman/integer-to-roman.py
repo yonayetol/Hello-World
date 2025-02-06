@@ -1,27 +1,39 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
-        my_dict={
+        my_dict = {
             1:"I",
+            4:"IV",
             5:"V",
+            9:"IX",
             10:"X",
+            40:"XL",
             50:"L",
+            90:"XC",
             100:"C",
+            400:"CD",
             500:"D",
-            1000:"M"
+            900:"CM",
+            1000:"M",
         }
-        new_list=list(str(num))
-        final=""
-        for i in range(len(new_list)):
-            new_i=int(new_list[i])
-            mana=10**(len(new_list[i+1:]))
-            if new_i < 4:
-                final+=(my_dict[mana]*new_i)
-            elif new_i==4:
-                final+=my_dict[mana]+my_dict[mana*5]
-            elif new_i==5:
-                final+=(my_dict[mana*5])
-            elif new_i<9:
-                final+=my_dict[mana*5]+my_dict[mana]*(new_i-5)
-            elif new_i==9:
-                final+=my_dict[mana]+my_dict[mana*10]
-        return final
+        def mine(elem):
+            if elem != "0":
+                return int(elem)
+            return ""
+        new = list(map(mine, str(num)))
+        n = len(new)
+
+        for i in range(n):
+            factor = (10**(n-i-1))
+            if new[i] == 9 or new[i] == 4 or new[i] == 1 or new[i] == 5:
+                new[i] = my_dict[(new[i] * factor)]
+
+            elif new[i] != "" and new[i] > 5:
+                new[i] = my_dict[5*factor] + (new[i] - 5)*my_dict[factor]
+
+            elif new[i] != "" and new[i] > 0:
+                new[i] = new[i]*(my_dict[factor])
+            
+        return"".join(new)
+
+                
+    
