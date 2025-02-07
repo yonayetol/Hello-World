@@ -1,17 +1,18 @@
 class Solution:
     def applyOperations(self, nums: List[int]) -> List[int]:
-        for n in range(len(nums)-1):
-            the_num = nums[n]
-            the_sec = nums[n+1]
-            if the_num == the_sec:
-                nums[n]=nums[n]*2
-                nums[n+1] = 0
-        final=[]
-        length = len(nums)
-        for n in range(len(nums)-1,-1,-1):
-            if nums[n] == 0:
-                final.insert(length,0)
-            else:
-                final.insert(0,nums[n])
-        return final
+        answer = [0]*len(nums)
+
+        i = 0
+        real_ptr = 0
+        while i < len(nums):
+            
+            if i < len(nums)-1 and nums[i] == nums[i+1] != 0:
+                answer[real_ptr] = nums[i]*2
+                real_ptr += 1
+                i += 1
+            elif i == len(nums)-1 or nums[i] != nums[i+1] and nums[i] != 0:
+                answer[real_ptr] = nums[i]
+                real_ptr += 1
+            i += 1
+        return answer
             
