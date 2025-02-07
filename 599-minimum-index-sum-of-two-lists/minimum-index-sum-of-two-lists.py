@@ -14,5 +14,4 @@ class Solution:
                         index_catcher.clear()
                     index_catcher.add(i)
                     little = sum
-                print(sum)
         return [list2[i] for i in index_catcher]
