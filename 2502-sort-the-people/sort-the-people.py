@@ -1,15 +1,9 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        # first let's associate the height with names
-        n = len(names)
-        nam_hei = {heights[i]:names[i] for i in range(n)}
-        # using insertion sort # inserting it where it deserve
+        ans = list(zip(heights,names))
 
-        for i in range(1,n):
-            lft = i
-            while lft-1 >= 0 and heights[lft-1] < heights[i]:
-                heights[lft-1], heights[i] = heights[i],heights[lft-1]
-                lft -= 1
-                i = lft
-            
-        return [nam_hei[height] for height in heights]
+        for i in range(len(names)):
+            for j in range(i+1,len(names)):
+                if ans[i][0] < ans[j][0]:
+                    ans[i], ans[j] = ans[j], ans[i]
+        return [sub[1] for sub in ans]
