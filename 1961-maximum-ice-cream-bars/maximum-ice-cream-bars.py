@@ -1,11 +1,10 @@
 class Solution:
     def maxIceCream(self, costs: List[int], coins: int) -> int:
-        finals = 0
-        costs=sorted(costs)
-        for i in costs:
-            if coins>=i:
-                coins-=i
-                finals+=1
-            else:
-                break
-        return finals
+        costs.sort()
+        answer,ptr = 0,0
+        while ptr < len(costs) and costs[ptr] <= coins:
+            coins -= costs[ptr]
+            answer += 1
+            ptr += 1
+             
+        return answer
