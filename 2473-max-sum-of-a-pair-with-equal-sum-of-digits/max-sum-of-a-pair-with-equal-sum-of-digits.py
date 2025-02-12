@@ -12,9 +12,10 @@ class Solution:
             little_sum = digit_sum(nums[i])
             if my_sorting[little_sum] == 0:
                 my_sorting[little_sum] = [nums[i]]
+                heapify(my_sorting[little_sum])
             else:
-                my_sorting[little_sum].append(nums[i])
-                my_sorting[little_sum].sort()# sorting of 2 or 3 numbers always
-                my_sorting[little_sum] = my_sorting[little_sum][-2:]
+                heappush(my_sorting[little_sum],nums[i])
+                if len(my_sorting[little_sum]) > 2:
+                    heappop(my_sorting[little_sum])
                 answer = max(answer,my_sorting[little_sum][0]+my_sorting[little_sum][1])
         return answer
