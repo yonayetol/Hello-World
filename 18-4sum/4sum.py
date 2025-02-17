@@ -1,15 +1,19 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums.sort()
-        reminder = set()
+        reminder = []
         for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
             for j in range(i+1,len(nums)):
+                if j > i+1 and nums[j] == nums[j-1]:
+                    continue
                 left = j + 1
                 right = len(nums)-1
                 while left < right:
                     the_sum = nums[left] + nums[right] + nums[i] + nums[j]
                     if the_sum == target:
-                        reminder.add((nums[left],nums[right],nums[i],nums[j]))
+                        reminder.append([nums[left],nums[right],nums[i],nums[j]])
                         left += 1
                         right -= 1
 
@@ -23,4 +27,4 @@ class Solution:
                     else:
                         right -= 1
                         
-        return [list(subs) for subs in reminder]
+        return reminder
