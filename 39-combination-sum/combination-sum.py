@@ -2,7 +2,7 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         answer = []
         tempo = []
-        candidates.sort()
+        # candidates.sort()
         def backTrack(i,currSum):
             for j in range(i,len(candidates)):
                 tempo.append(candidates[j])
