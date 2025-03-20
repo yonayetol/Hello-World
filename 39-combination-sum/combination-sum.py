@@ -4,10 +4,6 @@ class Solution:
         tempo = []
         candidates.sort()
         def backTrack(i,currSum):
-            if currSum == target:
-                answer.append(tempo.copy())
-            if currSum >= target: return
-
             for j in range(i,len(candidates)):
                 tempo.append(candidates[j])
                 currSum += candidates[j]
