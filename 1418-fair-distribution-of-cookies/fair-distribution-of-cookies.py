@@ -15,6 +15,10 @@ class Solution:
                 children[j] += cookies[i]
                 backTrack(i+1 , children)
                 children[j] -= cookies[i]
+
+                if children[j] == 0: break
+
+
         
         backTrack(0,children)
         return fairness
