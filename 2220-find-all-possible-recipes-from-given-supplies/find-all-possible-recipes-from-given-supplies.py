@@ -17,6 +17,8 @@ class Solution:
                 if temp == len(ingredients[food_at_I]): 
                     ans.add(recipes[food_at_I]) 
                     return True 
+
+            reminder[recipes[food_at_I]] = temp
             return False 
         for i in range(len(recipes)): 
             if recipes[i] in ans: continue 
