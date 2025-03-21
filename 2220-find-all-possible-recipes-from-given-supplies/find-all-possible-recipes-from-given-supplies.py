@@ -10,10 +10,10 @@ class Solution:
             if recipes[food_at_I] in reminder: return False 
             temp = 0 
             nonlocal ans 
+            reminder[recipes[food_at_I]] = temp 
             for ingredient in ingredients[food_at_I]: 
                 if ingredient in supplies or ingredient in ans: temp += 1 
                 elif ingredient in foodStore and can_I_make(foodStore[ingredient]): temp += 1 
-                reminder[recipes[food_at_I]] = temp 
                 if temp == len(ingredients[food_at_I]): 
                     ans.add(recipes[food_at_I]) 
                     return True 
