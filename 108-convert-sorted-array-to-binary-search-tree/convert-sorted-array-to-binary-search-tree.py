@@ -6,13 +6,16 @@
 #         self.right = right
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-        # basecases
-        if len(nums) == 0: return None
-        if len(nums) == 1: return TreeNode(nums[0])
-        
-        half = len(nums)//2
-        root = TreeNode(nums[half])
-        root.left = self.sortedArrayToBST(nums[:half])
-        root.right = self.sortedArrayToBST(nums[half+1:])
+        def recurseThis(start,end):
+            mid = max((start+end) // 2, 0)
+            curr = TreeNode(nums[mid])
 
-        return root
+            if start > end: return None
+            if start == end: return curr
+            
+            curr.left = recurseThis(start, mid-1)
+            curr.right = recurseThis(mid+1, end)
+
+            return curr
+
+        return recurseThis(0,len(nums)-1)
