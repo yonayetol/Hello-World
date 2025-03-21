@@ -18,8 +18,8 @@ class Solution:
                     ans.add(recipes[food_at_I]) 
                     return True 
 
-            reminder[recipes[food_at_I]] = temp
             return False 
+
         for i in range(len(recipes)): 
             if recipes[i] in ans: continue 
             can_I_make(i) 
