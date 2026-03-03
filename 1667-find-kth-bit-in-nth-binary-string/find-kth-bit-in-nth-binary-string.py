@@ -1,17 +1,15 @@
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
+        if n == 1:
+            return '0'
         
-        def ReverseInverse(n, s):
-            inverse = []
-            for char in s[::-1]:
-                if char == "0":
-                    inverse.append("1")
-                else:
-                    inverse.append("0")
-
-            return s + "1" + "".join(inverse)
-
-        tempo = "0"
-        for i in range(1,n):
-            tempo = ReverseInverse(i, tempo)
-        return tempo[k-1]
+        length = (1 << n) - 1
+        mid = (length + 1) // 2
+        
+        if k == mid:
+            return '1'
+        if k < mid:
+            return self.findKthBit(n - 1, k)
+        
+        c = self.findKthBit(n - 1, length - k + 1)
+        return '1' if c == '0' else '0'
