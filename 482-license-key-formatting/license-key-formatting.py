@@ -1,23 +1,15 @@
 class Solution:
     def licenseKeyFormatting(self, s: str, k: int) -> str:
-        newS = ""
-        for char in s:
-            if char == "-": continue
-            newS += char.upper()
+        newS = s.replace("-","").upper()
 
-        firstGrp = len(newS) % k
-        firstGrp = firstGrp if firstGrp else k
+        firstGrp = len(newS) % k or k
+        
+        answer = newS[:firstGrp] + "-"
+        idx = firstGrp
 
-        answer = ""
-        idx = 0
-
-        miniK = firstGrp
         while idx < len(newS):
-            miniK -= 1
-            answer += newS[idx]
-            if miniK == 0:
-                miniK = k
-                answer += "-"
-            idx += 1
+            answer += newS[idx:idx+k]
+            answer += "-"
+            idx += k
 
         return answer[:-1]
